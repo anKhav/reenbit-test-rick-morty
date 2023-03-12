@@ -1,0 +1,31 @@
+.back-button{
+  span{
+    font-size: 24px;
+    margin-left: 12px;
+  }
+  &:hover {
+    cursor: pointer;
+    .back-button__img{
+      animation: anim 1s infinite ease-in;
+    }
+  }
+
+  font-family: 'Karla', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: #000000;
+}
+@keyframes anim {
+  0%{
+    transform: translateX(0px);
+  }
+  50%{
+    transform: translateX(5px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
+}

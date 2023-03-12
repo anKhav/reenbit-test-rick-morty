@@ -1,4 +1,5 @@
 import AppRouter from "./AppRouter.jsx";
+import './assets/styles/common.scss'
 
 function App() {
 
