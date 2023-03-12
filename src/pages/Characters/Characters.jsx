@@ -5,15 +5,18 @@ import './Characters.scss'
 import {useDispatch, useSelector} from 'react-redux'
 import {getCharacters} from "../../features/CharactersSlice.js";
 import SearchBar from "../../components/UI/SearchBar/SearchBar.jsx";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import Pagination from "../../components/pagination/Pagination.jsx";
 
 const Characters = () => {
     const dispatch = useDispatch()
-    const characters = useSelector(state => state.characters)
+    const [searchParams] = useSearchParams();
+    const page = searchParams.get('page')
+    const characters = useSelector(state => state.characters.results)
     const navigate = useNavigate()
     useEffect(() => {
-      dispatch(getCharacters())
-    }, [])
+      dispatch(getCharacters(`https://rickandmortyapi.com/api/character/?page=${page}`))
+    }, [page])
     return (
         <section className='section-inner characters'>
             <div className="characters__logo">
@@ -21,10 +24,11 @@ const Characters = () => {
             </div>
             <SearchBar/>
             {
-                characters.length !== 0 ? <div className="characters__content">
+                characters && characters.length !== 0 ? <div className="characters__content">
                     {
-                        characters && characters.map(character => <CharacterCard onClick={() => navigate(`${character.id}`)} key={character.id} character={character}/>)
+                        characters.map(character => <CharacterCard onClick={() => navigate(`${character.id}`)} key={character.id} character={character}/>)
                     }
+                    <Pagination/>
                 </div> :
                     <div>Loading</div>
             }

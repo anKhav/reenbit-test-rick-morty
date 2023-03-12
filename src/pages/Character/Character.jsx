@@ -1,6 +1,6 @@
 import BackButton from "../../components/UI/BackButton/BackButton.jsx";
 import './Character.scss'
-import {useEffect, useLayoutEffect} from "react";
+import {useLayoutEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCharacter} from "../../features/CharacterSlice.js";
 import {useParams} from "react-router-dom";

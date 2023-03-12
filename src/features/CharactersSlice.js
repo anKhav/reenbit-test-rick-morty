@@ -1,15 +1,15 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 
-const initialState = []
+const initialState = {
+}
 
 export const getCharacters = createAsyncThunk(
     'characters/getCharacters',
-    async (__, {dispatch}) => {
+    async (url, {dispatch}) => {
         try {
-            const res = await fetch('https://rickandmortyapi.com/api/character')
+            const res = await fetch(url)
             const data = await res.json()
-            const results = data.results
-            dispatch(setCharacters(results))
+            dispatch(setCharacters(data))
         } catch (e){
             throw e
         }
