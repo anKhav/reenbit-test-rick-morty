@@ -12,11 +12,13 @@ const Characters = () => {
     const dispatch = useDispatch()
     const [searchParams] = useSearchParams();
     const page = searchParams.get('page')
+    const filterByName = searchParams.get('name')
     const characters = useSelector(state => state.characters.results)
     const navigate = useNavigate()
+    console.log(filterByName);
     useEffect(() => {
-      dispatch(getCharacters(`https://rickandmortyapi.com/api/character/?page=${page}`))
-    }, [page])
+      filterByName === null ? dispatch(getCharacters(`https://rickandmortyapi.com/api/character/?page=${page}`)) : dispatch(getCharacters(`https://rickandmortyapi.com/api/character/?page=${page}&name=${filterByName}`))
+    }, [page, filterByName])
     return (
         <section className='section-inner characters'>
             <div className="characters__logo">
@@ -28,9 +30,11 @@ const Characters = () => {
                     {
                         characters.map(character => <CharacterCard onClick={() => navigate(`${character.id}`)} key={character.id} character={character}/>)
                     }
-                    <Pagination/>
                 </div> :
                     <div>Loading</div>
+            }
+            {
+                 characters && characters.length !== 0 && <Pagination filter={filterByName}/>
             }
         </section>
     );

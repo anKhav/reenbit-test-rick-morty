@@ -3,16 +3,15 @@ import {useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 import './Pagination.scss'
 
-const Pagination = () => {
+const Pagination = ({filter}) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const page = +searchParams.get('page')
 
     const pages = useSelector(state => state.characters.info.pages)
-    console.log(pages);
 
     const goToPage = async (e) => {
         const pageNumber = +e.target.innerText
-        setSearchParams(`page=${pageNumber}`)
+        filter === null ? setSearchParams(`page=${pageNumber}`) : setSearchParams(`page=${pageNumber}&name=${filter}`)
     }
 
     return (

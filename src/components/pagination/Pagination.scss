@@ -1,5 +1,6 @@
 .pagination{
   overflow: hidden;
+  margin-top: 25px;
 }
 
 .button{
@@ -21,6 +22,7 @@
   &--current{
     font-size: 28px;
     &:hover{
+      cursor: default;
       &::after{
         display: none;
       }
