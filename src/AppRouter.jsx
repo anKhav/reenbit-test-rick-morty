@@ -1,18 +1,27 @@
 import React, {useEffect} from 'react';
-import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import Characters from "./pages/Characters/Characters.jsx";
 import Character from "./pages/Character/Character.jsx";
 import Layout from "./Layout.jsx";
 
 const AppRouter = () => {
     const navigate = useNavigate()
-    const {pathname} = useLocation()
+
 
     useEffect(() => {
-        pathname === '/' && navigate({
-            pathname:'/',
-            search:'page=1'
-        })
+        const storedFilter = localStorage.getItem("filter")
+        const storedPage = localStorage.getItem("page")
+        if (storedFilter && storedPage) {
+            navigate({
+                pathname:'/',
+                search:`${storedPage}&${storedFilter}`
+            })
+        } else if (storedPage) {
+            navigate({
+                pathname:'/',
+                search:`${storedPage}`
+            })
+        }
     },[])
     return (
         <Routes>

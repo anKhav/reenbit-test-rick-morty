@@ -1,41 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import SearchIcon from "../../../assets/images/searchIcon.jsx";
 import './SearchBar.scss'
-import {getCharacters} from "../../../features/CharactersSlice.js";
-import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
-import {setFilterKeyword} from "../../../features/FilterSlice.js";
+import {LocalStorageService} from "../../../services/LocalStorageService.js";
 
-// onSubmit={() => dispatch(getCharacters(`https://rickandmortyapi.com/api/character/?page=1&name=${keyword}`))}
-const SearchBar = () => {
-    const filterKeyword = useSelector(state => state.filter.keyword)
-    const [keyword, setKeyword] = useState('')
+const SearchBar = ({page}) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const filterByName = searchParams.get('name')
-    const dispatch = useDispatch()
-    console.log(filterKeyword);
+    const [keyword, setKeyword] = useState(filterByName || '')
 
     useEffect(() => {
-
-    },[filterByName])
-
-
-    const onSubmitHandler = async (e) => {
-        e.preventDefault()
-        await dispatch(setFilterKeyword(keyword))
-        filterKeyword.length !== 0 && await setSearchParams(`?page=1&name=${filterKeyword}`)
-        dispatch(getCharacters(`https://rickandmortyapi.com/api/character/?page=1&name=${keyword}`))
-    }
+        page && LocalStorageService.set('page', `page=${page}`)
+    },[filterByName, page])
 
     const onChangeHandler = async (e) => {
         await setKeyword(e.target.value)
-        e.target.value.length !==0 ?
-            await setSearchParams(`?page=1&name=${e.target.value}`) :
+        if (e.target.value.length !==0) {
+            await setSearchParams(`?page=1&name=${e.target.value}`)
+            await LocalStorageService.set('filter', `name=${e.target.value}`)
+        } else {
             await setSearchParams(`?page=1`)
+            await LocalStorageService.remove('filter')
+        }
     }
 
     return (
-        <form className='search-bar' onSubmit={(e) => onSubmitHandler(e)}>
+        <form className='search-bar' onSubmit={(e) => e.preventDefault()}>
             <SearchIcon className='search-bar__icon'/>
             <input value={keyword} onChange={(e) => onChangeHandler(e)} className='search-bar__input' type="text" />
         </form>
