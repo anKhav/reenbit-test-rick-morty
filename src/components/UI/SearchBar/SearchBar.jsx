@@ -7,10 +7,11 @@ import {LocalStorageService} from "../../../services/LocalStorageService.js";
 const SearchBar = ({page}) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const filterByName = searchParams.get('name')
-    const [keyword, setKeyword] = useState(filterByName || '')
+    const [keyword, setKeyword] = useState( '')
 
     useEffect(() => {
         page && LocalStorageService.set('page', `page=${page}`)
+        filterByName && setKeyword(filterByName)
     },[filterByName, page])
 
     const onChangeHandler = async (e) => {

@@ -5,8 +5,30 @@
 .section-outer{
   max-width: 1440px;
   margin: 68px auto;
+  padding: 0 20px;
 }
-.section-inner{
+.section-inner {
   max-width: 1020px;
   margin: 86px auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .section-inner {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 92px 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-inner {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 92px 24px;
+  }
+  .section-outer{
+    margin: 68px 0;
+    width: 100%;
+  }
 }

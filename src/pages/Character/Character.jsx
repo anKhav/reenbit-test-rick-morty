@@ -22,32 +22,34 @@ const Character = () => {
             <BackButton className='character__back-button'/>
             {
                 Object.keys(character).length !== 0 && +character.id === +id ?
-                    <div className='section-outer character__wrapper'>
-                        <img className="character__avatar" src={character.image} alt=""/>
-                        <h2 className="character__title">{character.name}</h2>
-                        <ul className='list'>
-                            <h4 className="list__title">Information</h4>
-                            <li className='item'>
-                                <h5 className="item__title">Gender</h5>
-                                <p className="item__text">{character.gender}</p>
-                            </li>
-                            <li className='item'>
-                                <h5 className="item__title">Status</h5>
-                                <p className="item__text">{character.status}</p>
-                            </li>
-                            <li className='item'>
-                                <h5 className="item__title">Specie</h5>
-                                <p className="item__text">{character.species}</p>
-                            </li>
-                            <li className='item'>
-                                <h5 className="item__title">Origin</h5>
-                                <p className="item__text">{character.origin.name}</p>
-                            </li>
-                            <li className='item'>
-                                <h5 className="item__title">Type</h5>
-                                <p className="item__text">{character.type || 'Unknown'}</p>
-                            </li>
-                        </ul>
+                    <div className="section-outer">
+                        <div className='character__wrapper'>
+                            <img className="character__avatar" src={character.image} alt=""/>
+                            <h2 className="character__title">{character.name}</h2>
+                            <ul className='list'>
+                                <h4 className="list__title">Information</h4>
+                                <li className='item'>
+                                    <h5 className="item__title">Gender</h5>
+                                    <p className="item__text">{character.gender}</p>
+                                </li>
+                                <li className='item'>
+                                    <h5 className="item__title">Status</h5>
+                                    <p className="item__text">{character.status}</p>
+                                </li>
+                                <li className='item'>
+                                    <h5 className="item__title">Specie</h5>
+                                    <p className="item__text">{character.species}</p>
+                                </li>
+                                <li className='item'>
+                                    <h5 className="item__title">Origin</h5>
+                                    <p className="item__text">{character.origin.name}</p>
+                                </li>
+                                <li className='item'>
+                                    <h5 className="item__title">Type</h5>
+                                    <p className="item__text">{character.type || 'Unknown'}</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     :
                     <MutatingDots
