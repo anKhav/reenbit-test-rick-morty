@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from '../../assets/images/RickMortyLogosvg.svg'
 import CharacterCard from "../../layouts/CharacterCard/CharacterCard.jsx";
 import './Characters.scss'
@@ -14,7 +14,9 @@ const Characters = () => {
     const [searchParams] = useSearchParams();
     const page = searchParams.get('page')
     const filterByName = searchParams.get('name')
-    const characters = useSelector(state => state.characters.results)
+    const characters = useSelector(state => state.characters.data.results)
+    const isLoading = useSelector(state => state.characters.loading)
+    console.log(isLoading);
     const navigate = useNavigate()
 
     useEffect(() => {

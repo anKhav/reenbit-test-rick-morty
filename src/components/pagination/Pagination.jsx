@@ -8,14 +8,13 @@ const Pagination = ({filter}) => {
     const page = +searchParams.get('page')
     const [currentPage, setCurrentPage] = useState( 1)
 
-    const pages = useSelector(state => state.characters.info.pages)
+    const pages = useSelector(state => state.characters.data.info.pages)
     useEffect(() => {
         page === 0 ? setCurrentPage(1) : setCurrentPage(page)
     },[page])
 
     const goToPage = async (e) => {
         const pageNumber = +e.target.innerText
-        // setCurrentPage(prevState => prevState = page)
         filter === null ? setSearchParams(`page=${pageNumber}`) : setSearchParams(`page=${pageNumber}&name=${filter}`)
     }
 
