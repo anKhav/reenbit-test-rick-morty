@@ -1,7 +1,7 @@
 class GoogleAuthService {
     static init(client_id,cb) {
         try {
-            google.accounts.id.initialize({
+            google && google.accounts.id.initialize({
                 client_id:client_id,
                 callback: cb
             })
@@ -12,7 +12,7 @@ class GoogleAuthService {
 
     static renderButton(DOMElement, options) {
         try {
-            google.accounts.id.renderButton(
+           google && google.accounts.id.renderButton(
                 DOMElement,
                 options
             )
