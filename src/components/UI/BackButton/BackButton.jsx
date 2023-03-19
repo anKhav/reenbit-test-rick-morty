@@ -1,6 +1,6 @@
 import React from 'react';
 import './BackButton.scss'
-import arrow from '../../../assets/images/arrow_back_24px.svg'
+import arrow from '../../../../public/arrow_back_24px.svg'
 import {useNavigate} from "react-router-dom";
 
 const BackButton = ({className}) => {

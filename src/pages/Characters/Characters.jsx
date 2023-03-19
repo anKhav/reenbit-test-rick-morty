@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import logo from '../../assets/images/RickMortyLogosvg.svg'
+import logo from '../../../public/RickMortyLogosvg.svg'
 import CharacterCard from "../../layouts/CharacterCard/CharacterCard.jsx";
 import './Characters.scss'
 import {useDispatch, useSelector} from 'react-redux'
