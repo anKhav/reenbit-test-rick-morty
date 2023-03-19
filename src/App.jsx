@@ -5,7 +5,6 @@ function App() {
   return (
     <main className="App">
         <AppRouter/>
-        <div id='signInDiv'></div>
     </main>
   )
 }

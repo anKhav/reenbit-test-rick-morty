@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import logo from '../../assets/images/RickMortyLogosvg.svg'
 import CharacterCard from "../../layouts/CharacterCard/CharacterCard.jsx";
 import './Characters.scss'
@@ -16,7 +16,6 @@ const Characters = () => {
     const filterByName = searchParams.get('name')
     const characters = useSelector(state => state.characters.data.results)
     const isLoading = useSelector(state => state.characters.loading)
-    console.log(isLoading);
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -29,32 +28,80 @@ const Characters = () => {
             </div>
             <SearchBar page={page}/>
             {
-                characters && characters.length !== 0 ?
-                    <div className="characters__content">
+                isLoading ?
+                    <div className='overlay__wrapper'>
+                        <div className='overlay'>
+                            <MutatingDots
+                                height="100"
+                                width="100"
+                                color="black"
+                                secondaryColor= 'lightgrey'
+                                radius='12.5'
+                                ariaLabel="mutating-dots-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />
+                        </div>
                         {
-                            characters.map(character =>
-                                <CharacterCard
-                                    onClick={() => navigate(`${character.id}`)}
-                                    key={character.id}
-                                    character={character}
+                            characters && characters.length !== 0 ?
+                                <div className="characters__content">
+                                    {
+                                        characters.map(character =>
+                                            <CharacterCard
+                                                onClick={() => navigate(`${character.id}`)}
+                                                key={character.id}
+                                                character={character}
+                                            />
+                                        )
+                                    }
+                                </div> :
+                                <MutatingDots
+                                    height="100"
+                                    width="100"
+                                    color="black"
+                                    secondaryColor= 'lightgrey'
+                                    radius='12.5'
+                                    ariaLabel="mutating-dots-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
                                 />
-                            )
+                        }
+                        {
+                            characters && characters.length !== 0 && <Pagination filter={filterByName}/>
                         }
                     </div> :
-                        <MutatingDots
-                            height="100"
-                            width="100"
-                            color="black"
-                            secondaryColor= 'lightgrey'
-                            radius='12.5'
-                            ariaLabel="mutating-dots-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
-                        />
-            }
-            {
-                 characters && characters.length !== 0 && <Pagination filter={filterByName}/>
+                    <div className='overlay__wrapper'>
+                        {
+                            characters && characters.length !== 0 ?
+                                <div className="characters__content">
+                                    {
+                                        characters.map(character =>
+                                            <CharacterCard
+                                                onClick={() => navigate(`${character.id}`)}
+                                                key={character.id}
+                                                character={character}
+                                            />
+                                        )
+                                    }
+                                </div> :
+                                <MutatingDots
+                                    height="100"
+                                    width="100"
+                                    color="black"
+                                    secondaryColor= 'lightgrey'
+                                    radius='12.5'
+                                    ariaLabel="mutating-dots-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
+                                />
+                        }
+                        {
+                            characters && characters.length !== 0 && <Pagination filter={filterByName}/>
+                        }
+                    </div>
             }
         </section>
     );

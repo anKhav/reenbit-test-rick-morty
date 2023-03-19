@@ -1,0 +1,43 @@
+.user-info{
+  position: absolute;
+  top: 25px;
+  right: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  &__name{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: "Roboto", serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #081F32;
+  }
+}
+.logout{
+  padding: 10px 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-family: "Roboto", serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: #081F32;
+  transition: all .4s;
+  &:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    transition: all .4s;
+  }
+}
