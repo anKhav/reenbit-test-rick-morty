@@ -23,14 +23,16 @@ const Auth = () => {
 
     }
     useEffect(() => {
-        GoogleAuthService.init(
-            '792789015648-nsnptboa912bvuvujfsugeci6pj45k72.apps.googleusercontent.com',
-            handleCallbackResponse
-        )
-        GoogleAuthService.renderButton(
-            authRef.current,
-            {type:'icon', size:'large', shape:'circle'}
-        )
+        if (google) {
+            GoogleAuthService.init(
+                '792789015648-nsnptboa912bvuvujfsugeci6pj45k72.apps.googleusercontent.com',
+                handleCallbackResponse
+            )
+            GoogleAuthService.renderButton(
+                authRef.current,
+                {type:'icon', size:'large', shape:'circle'}
+            )
+        }
     },[])
     return (
         <section className='auth'>
