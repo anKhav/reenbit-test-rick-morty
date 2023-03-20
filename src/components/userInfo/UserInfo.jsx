@@ -13,7 +13,6 @@ const UserInfo = () => {
         window.location.reload()
         dispatch(logout())
     }
-    console.log(user);
     return (
         <div className='user-info'>
             <img className='user-info__img' src={user.picture} alt="User avatar"/>

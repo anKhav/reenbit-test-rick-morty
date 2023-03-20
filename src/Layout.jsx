@@ -5,7 +5,6 @@ import UserInfo from "./components/userInfo/UserInfo.jsx";
 
 const Layout = () => {
     const user = useSelector(state => state.user)
-    console.log(user);
     return (
         <>
             {
