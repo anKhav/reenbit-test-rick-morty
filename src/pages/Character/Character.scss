@@ -13,7 +13,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
+    padding: 50px 0;
   }
   &__avatar{
     border-radius: 50%;
@@ -89,6 +91,9 @@
 
 @media (max-width: 768px) {
   .character{
+    &__back-button{
+      top: 100px;
+    }
     &__avatar{
       margin-top: 78px;
       margin-bottom: 25px;
